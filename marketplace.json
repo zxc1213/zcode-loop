@@ -7,7 +7,7 @@
         "source": "github",
         "repo": "zxc1213/zcode-loop"
       },
-      "version": "0.1.0",
+      "version": "0.1.1",
       "description": "Measurement loop for ZCode: state a goal and a mechanical metric, let the agent change one thing at a time, keep what moves the number, revert what does not, and keep an auditable ledger of every trial.",
       "displayName": "Loop 实验循环",
       "displayName_i18n": {

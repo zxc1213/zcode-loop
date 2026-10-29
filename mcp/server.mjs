@@ -46,7 +46,7 @@ import {
 } from '../lib/gitops.mjs'
 import { renderHtml, renderMarkdown } from '../lib/report.mjs'
 
-const PLUGIN_VERSION = '0.1.0'
+const PLUGIN_VERSION = '0.1.1'
 const PROJECT_DIR = process.env.ZCODE_PROJECT_DIR || process.cwd()
 const PATHS = loopPaths(PROJECT_DIR)
 

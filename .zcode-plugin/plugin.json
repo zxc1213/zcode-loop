@@ -1,6 +1,6 @@
 {
   "name": "zcode-loop",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Measurement loop for ZCode: state a goal and a mechanical metric, let the agent change one thing at a time, keep what moves the number, revert what does not, and keep an auditable ledger of every trial.",
   "description_i18n": {
     "en": "Measurement loop for ZCode: state a goal and a mechanical metric, let the agent change one thing at a time, keep what moves the number, revert what does not, and keep an auditable ledger of every trial.",
@@ -56,14 +56,16 @@
     "loop": {
       "type": "stdio",
       "command": "node",
-      "args": ["${ZCODE_PLUGIN_ROOT}/mcp/server.mjs"],
+      "args": [
+        "${ZCODE_PLUGIN_ROOT}/mcp/server.mjs"
+      ],
       "cwd": "${ZCODE_PROJECT_DIR}",
       "env": {
         "ZCODE_PROJECT_DIR": "${ZCODE_PROJECT_DIR}",
         "ZLOOP_BENCH_TIMEOUT_MS": "${user_config.benchTimeoutMs}",
         "ZLOOP_GATE_TIMEOUT_MS": "${user_config.gateTimeoutMs}"
       },
-      "timeoutMs": 30000
+      "timeoutMs": 900000
     }
   }
 }
