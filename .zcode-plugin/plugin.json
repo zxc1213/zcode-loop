@@ -1,0 +1,69 @@
+{
+  "name": "zcode-loop",
+  "version": "0.1.0",
+  "description": "Measurement loop for ZCode: state a goal and a mechanical metric, let the agent change one thing at a time, keep what moves the number, revert what does not, and keep an auditable ledger of every trial.",
+  "description_i18n": {
+    "en": "Measurement loop for ZCode: state a goal and a mechanical metric, let the agent change one thing at a time, keep what moves the number, revert what does not, and keep an auditable ledger of every trial.",
+    "zh-CN": "ZCode 自主实验循环：定目标与机械度量，agent 每次只改一处，跑基准、保留有效改动、回滚无效改动，并留下可审计的试验账本。"
+  },
+  "author": {
+    "name": "Ray"
+  },
+  "homepage": "https://github.com/zxc1213/zcode-loop",
+  "repository": "https://github.com/zxc1213/zcode-loop",
+  "license": "MIT",
+  "keywords": [
+    "loop",
+    "experiment",
+    "optimization",
+    "benchmark",
+    "metric",
+    "zcode-plugin"
+  ],
+  "userConfig": {
+    "maxTrials": {
+      "title": "每轮试验上限",
+      "description": "默认 20。也可在 .zloop/config.json 覆盖。",
+      "type": "number",
+      "default": 20
+    },
+    "maxMinutes": {
+      "title": "每轮时长上限（分钟）",
+      "description": "默认 120。超时后 Stop 钩子不再续跑。",
+      "type": "number",
+      "default": 120
+    },
+    "maxFailures": {
+      "title": "连续失败上限",
+      "description": "默认 3。连续 error/drop 达到该值即停止续跑。",
+      "type": "number",
+      "default": 3
+    },
+    "benchTimeoutMs": {
+      "title": "基准超时（毫秒）",
+      "description": "单次基准命令的墙钟超时，默认 600000。",
+      "type": "number",
+      "default": 600000
+    },
+    "gateTimeoutMs": {
+      "title": "门禁超时（毫秒）",
+      "description": "正确性门禁脚本的超时，默认 300000。",
+      "type": "number",
+      "default": 300000
+    }
+  },
+  "mcpServers": {
+    "loop": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${ZCODE_PLUGIN_ROOT}/mcp/server.mjs"],
+      "cwd": "${ZCODE_PROJECT_DIR}",
+      "env": {
+        "ZCODE_PROJECT_DIR": "${ZCODE_PROJECT_DIR}",
+        "ZLOOP_BENCH_TIMEOUT_MS": "${user_config.benchTimeoutMs}",
+        "ZLOOP_GATE_TIMEOUT_MS": "${user_config.gateTimeoutMs}"
+      },
+      "timeoutMs": 30000
+    }
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+.zloop/
+loop-report.html
+loop-report.md
+*.log
+.DS_Store
+.mimosa/

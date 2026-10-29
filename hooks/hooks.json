@@ -1,0 +1,59 @@
+{
+  "description": "zcode-loop hooks: frozen benchmark protection (PreToolUse), ledger memory injection (UserPromptSubmit), loop continuation (Stop), resume hint (SessionStart). All fail open.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|ApplyPatch",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/guard.mjs", "${ZCODE_PROJECT_DIR}"],
+            "timeoutMs": 5000,
+            "statusMessage": "zcode-loop: checking frozen files…"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/inject.mjs", "${ZCODE_PROJECT_DIR}"],
+            "timeoutMs": 5000,
+            "statusMessage": "zcode-loop: injecting ledger memory…"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/continue.mjs", "${ZCODE_PROJECT_DIR}"],
+            "timeoutMs": 5000,
+            "statusMessage": "zcode-loop: checking loop continuation…"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/resume.mjs", "${ZCODE_PROJECT_DIR}"],
+            "timeoutMs": 5000,
+            "statusMessage": "zcode-loop: session context…"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "zcode-loop",
+  "plugins": [
+    {
+      "name": "zcode-loop",
+      "source": {
+        "source": "github",
+        "repo": "zxc1213/zcode-loop"
+      },
+      "version": "0.1.0",
+      "description": "Measurement loop for ZCode: state a goal and a mechanical metric, let the agent change one thing at a time, keep what moves the number, revert what does not, and keep an auditable ledger of every trial.",
+      "displayName": "Loop 实验循环",
+      "displayName_i18n": {
+        "zh-CN": "Loop 实验循环"
+      },
+      "description_i18n": {
+        "zh-CN": "定目标与机械度量，agent 每次只改一处，跑基准、保留有效改动、回滚无效改动，并留下可审计的试验账本。"
+      },
+      "category": "productivity"
+    }
+  ]
+}

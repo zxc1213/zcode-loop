@@ -1,0 +1,14 @@
+{
+  "name": "zcode-loop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Measurement loop for ZCode: goal + mechanical metric, keep/revert trial semantics, auditable ledger.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "smoke": "node test/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
